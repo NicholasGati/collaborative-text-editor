@@ -1,6 +1,24 @@
 "use strict";
 
 document.addEventListener('DOMContentLoaded', () => {
+  const textarea = document.getElementById('inline-editor');
+
+  // Set default font size and display
+  let fontSize = 12;
+  const fontSizeText = document.getElementById('font-size');
+  fontSizeText.innerHTML = `${fontSize}px`;
+
+  function changeFontSize() {
+    fontSize += this.value;
+    textarea.style.fontSize = `${fontSize}px`;
+    fontSizeText.innerHTML = `${fontSize}px`;
+  }
+
+  const increaseFont = document.getElementById('increase-font');
+  const decreaseFont = document.getElementById('decrease-font');
+  increaseFont.addEventListener('click', changeFontSize, false);
+  decreaseFont.addEventListener('click', changeFontSize, false);
+
   // get the difference between the previous and next state of the text
   let diff = {};
   function difference(prev, next) {
@@ -13,21 +31,23 @@ document.addEventListener('DOMContentLoaded', () => {
     return diff;
   }
 
-  const textarea = document.getElementById('inline-editor');
+  // Initiate the socket
   const socket = io();
 
   // data received from server to then fill the text area with updated data
   socket.on('type', (data) => {
-    textarea.value = data.text;
+    textarea.textContent = data.text;
+    textarea.style.fontSize = `${fontSize}px`;
   });
 
   // listener and handler for keyup - data to send to server
   textarea.addEventListener('keyup', handleKeyUp, false);
   function handleKeyUp(e) {
     if (e.keyCode === 8 || e.keyCode === 46) {
-      socket.emit('type', { text: textarea.value.length > 0 ? textarea.value : '', backspace: true});
+      socket.emit('type', { text: this.textContent.length > 0 ? this.textContent : '', backspace: true});
     } else {
-      socket.emit('type', { text: textarea.value, backspace: false });
+      socket.emit('type', { text: this.textContent, backspace: false });
     }
   }
+
 });

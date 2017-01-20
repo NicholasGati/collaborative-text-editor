@@ -8,8 +8,33 @@ const bodyParser = require('body-parser');
 const expressHbs = require('express-handlebars');
 
 const index = require('./routes/index');
-
 const app = express();
+
+/**
+ * Get sharejs dependencies
+ */
+const sharejs = require('share');
+
+let redisClient;
+console.log('sharejs:', process.env.REDISTOGO_URL);
+if (process.env.REDISTOGO_URL) {
+  const rtg   = require("url").parse(process.env.REDISTOGO_URL);
+  redisClient = require("redis").createClient(rtg.port, rtg.hostname);
+  redisClient.auth(rtg.auth.split(":")[1]);
+} else {
+  redisClient = require("redis").createClient();
+}
+
+const options = {
+  db: { type: 'redis', client: redisClient }
+}
+
+/**
+  * Attach sharejs to server
+  */
+sharejs.server.attach(app, options);
+
+// END SHAREJS CODE
 
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));

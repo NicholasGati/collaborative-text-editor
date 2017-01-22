@@ -29,17 +29,7 @@ const Type = () => {
       } else {
         doc.attach_textarea(textarea);
       }
-      // handleKeyUp();
     });
-
-    // Initiate the socket
-    // const socket = io();
-    // data received from server to then fill the text area with updated data
-    // socket.on('type', (data) => {
-    //   textarea.textContent = data.text;
-    //   textarea.style.fontSize = `${fontSize}px`;
-    // });
-    // listener and handler for keyup - data to send to server
 
     function handleKeyDown(e) {
       if (e.keyCode === 9) {
@@ -65,14 +55,6 @@ const Type = () => {
       previousValue = textarea.textContent;
     }
     handleKeyUp();
-
-    // function handleKeyUp() {
-    //   if (e.keyCode === 8 || e.keyCode === 46) {
-    //     socket.emit('type', { text: this.textContent.length > 0 ? this.textContent : ''});
-    //   } else {
-    //     socket.emit('type', { text: textarea.textContent });
-    //   }
-    // }
   });
 }
 

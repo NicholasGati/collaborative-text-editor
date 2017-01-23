@@ -15,6 +15,10 @@
   color: rgb(62, 161, 224);
 }
 
+.columns {
+  border-right: 1px solid #ccc;
+}
+
 .editor-section {
   margin-top: 20px;
   box-shadow: 0 4px 2px -2px gray;
@@ -30,12 +34,11 @@
   box-shadow: 0 4px 2px -2px gray;
 }
 
-#text-alignment {
-  margin-top: 8px;
-  padding-left: 0px;
+#text-alignment, #font-sizes {
+  margin-top: 10px;
 }
 
-#text-alignment li {
+#text-alignment li, #font-sizes li {
   cursor: pointer;
   padding: 2px;
   width: 40px;
@@ -43,7 +46,7 @@
   margin-right: 10px;
 }
 
-#text-alignment li img {
+#text-alignment li img, #font-sizes li img {
   width: 30px;
 }
 
@@ -53,7 +56,6 @@
   border: none;
   padding: 15px;
   font-family: verdana;
-  font-size: 16px;
 }
 
 /*
@@ -70,6 +72,7 @@
   border-radius: 15px;
   text-align: center;
   margin-right: 15px;
+  border: 1px solid #ccc;
 }
 
 .red {
@@ -102,4 +105,20 @@
 
 .background-green {
   background-color: rgb(46, 179, 39);
+}
+
+.orange {
+  color: rgb(255, 138, 0);
+}
+
+.background-orange {
+  background-color: rgb(255, 138, 0);
+}
+
+.purple {
+  color: rgb(84, 61, 150);
+}
+
+.background-purple {
+  background-color: rgb(84, 61, 150);
 }

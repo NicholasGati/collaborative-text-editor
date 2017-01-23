@@ -22,7 +22,7 @@ const EditorFunctions = function(socket, editor) {
 
   // Color the text
   this.colorText = function(color) {
-    const colors = ['red', 'green', 'blue', 'black'];
+    const colors = ['red', 'green', 'blue', 'black', 'orange', 'purple'];
     // remove the unwanted color classes
     for (let i = 0; i < colors.length; i++) {
       if (editor.classList.contains(colors[i])) {
@@ -35,6 +35,15 @@ const EditorFunctions = function(socket, editor) {
   this.emitColorText = function() {
     // tell the socket to send a change_color message
     socket.emit('change_color', { color: this.id });
+  }
+
+  // Font size
+  this.emitChangeFontSize = function() {
+    socket.emit('change_size', { font_size: this.dataset.fontSize });
+  }
+
+  this.changeFontSize = function(size) {
+    editor.style.fontSize = `${size}px`;
   }
 }
 

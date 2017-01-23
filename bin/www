@@ -31,6 +31,7 @@ server.on('listening', onListening);
 
 let currentColor = 'black';
 let currentAlignment = 'text-left';
+let currentFontSize = 12;
 
 io.on('connection', (socket) => {
   console.log('User is connected');
@@ -41,6 +42,9 @@ io.on('connection', (socket) => {
   // emit the most current alignment
   socket.emit('align', { alignment: currentAlignment });
 
+  // emit the most current alignment
+  socket.emit('change_size', { font_size: currentFontSize });
+
   // drawing functions
   socket.on('change_color', (data) => {
     currentColor = data.color;
@@ -50,6 +54,11 @@ io.on('connection', (socket) => {
   socket.on('align', (data) => {
     currentAlignment = data.alignment;
     io.emit('align', { alignment: currentAlignment });
+  });
+
+  socket.on('change_size', (data) => {
+    currentFontSize += parseInt(data.font_size);
+    io.emit('change_size', { font_size: currentFontSize });
   });
 
   // Disconnection

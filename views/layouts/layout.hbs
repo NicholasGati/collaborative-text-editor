@@ -3,23 +3,23 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!-- <script type='text/javascript' src='/socket.io/socket.io.js'></script> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script type='text/javascript' src='/socket.io/socket.io.js'></script>
     <script type='text/javascript' src="/channel/bcsocket.js"></script>
     <script type='text/javascript' src="/share/share.uncompressed.js"></script>
     <script type='text/javascript' src="/share/textarea.js"></script>
   </head>
   <body>
     <div class="navbar navbar-default">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
-          <div class="col-md-10">
-            <h1>{{title}}</h1>
+          <div class="col-md-9">
+            <h1 id="title">{{title}}</h1>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3 text-right">
             <ul id="navigation-list" class="list-group">
-              <li class="list-group-item">
-                <a href="https://calm-journey-56128.herokuapp.com/">Collaborative Drawing</a>
+              <li>
+                <a href="https://calm-journey-56128.herokuapp.com/">Try out Collaborative Drawing!</a>
               </li>
             </ul>
           </div>
